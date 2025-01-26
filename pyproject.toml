@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coding_assistant"
+version = "0.0.1"
+description = "CodingAssistant provides methods to benchmark state-of-the-art LLMs for coding tasks"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy"
+]
+dependencies = ["numpy", "scipy", "matplotlib", "seaborn"]
+
+[project.optional-dependencies]
+# Note: Follow official instructions to install platform-dependent versions of these packages
+bench = ["torch", "vllm", "sglang", "flash-attn"]
+
+[project.urls]
+"Homepage" = "https://github.com/robin-oester/coding-assistant"
+
+[project.scripts]
+bench-model = "coding_assistant.benchmark.bench_model:main"
+bench-attention = "coding_assistant.benchmark.bench_attention:main"
+bench-moe = "coding_assistant.benchmark.bench_moe:main"
+expert-counter = "coding_assistant.experiments.expert_counting.expert_counter:main"
+expert-prefetcher = "coding_assistant.experiments.expert_prefetching.expert_prefetcher:main"
+flash-attn-optimizer = "coding_assistant.experiments.flash_attn_optimization.flash_attn_optimizer:main"
